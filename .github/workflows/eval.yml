@@ -1,0 +1,27 @@
+name: Agent Evaluation Gate
+
+# Mirrors reflection.md Section 5, Câu 4:
+#   Code change -> [unit tests] -> [offline eval + regression gate] -> [block/alert] -> Deploy
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pytest
+
+      - name: Run unit tests
+        run: pytest tests/ -v
+
+      - name: Run evaluation quality gate (golden dataset + regression check)
+        run: python ci_gate.py

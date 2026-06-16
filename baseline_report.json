@@ -1,0 +1,13 @@
+{
+  "total": 20,
+  "passed": 2,
+  "pass_rate": 0.1,
+  "avg_faithfulness": 0.34020273252496913,
+  "avg_relevance": 0.8525252525252526,
+  "avg_completeness": 0.8135461745580548,
+  "failure_types": {
+    "off_topic": 9,
+    "hallucination": 8,
+    "incomplete": 1
+  }
+}
